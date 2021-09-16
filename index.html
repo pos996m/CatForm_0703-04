@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貓咪智商測驗</title>
+    <link rel="icon" href="./img/icon_2_工作區域 1.png">
+    <!-- <link rel="stylesheet" href="./testredio.css"> -->
+    <style>
+        /* 外層 */
+        body {
+            background-color: rgb(233, 233, 195);
+            /* padding: -2px; */
+            padding: 50px;
+            /* background-color: rgba(255, 160, 122, 0.562); */
+            background-image: url(./img/back3_工作區域\ 1.png);
+        }
+
+        /* nav{
+            background-color: lightcoral;
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            z-index:-1;
+        } */
+
+        /* #banner1 {
+            background-color: lightsalmon;
+            width: 100%;
+            height: 200px;
+            
+
+        } */
+        /* 至頂按鈕 */
+        #toptop {
+            background-color: lightsalmon;
+            background-image: url(./img/icon_工作區域\ 1_工作區域\ 1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            /* clip-path: circle(50% at 50% 50%); */
+            border-radius: 50px;
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            right: 30px;
+            bottom: 110px;
+            box-shadow: 4px 4px 10px -5px #000000;
+        }
+
+        /* 至底按鈕 */
+        #antdown {
+            background-color: lightsalmon;
+            background-image: url(./img/icon_工作區域\ 1_工作區域\ 1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: rotate(180deg);
+            /* clip-path: circle(50% at 50% 50%); */
+            border-radius: 50px;
+            box-shadow: -4px -4px 10px -5px #000000;
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+
+        }
+
+        /* 至頂與至底滑鼠過去變色 */
+        /* 滑過至頂 */
+        #toptop:hover {
+            background-color: brown;
+        }
+
+        /* 滑過至底 */
+        #antdown:hover {
+            background-color: brown;
+        }
+
+        /* 中層 */
+        #outmax {
+            background-color: white;
+            /* padding: 20px; */
+            padding: 20px 0px;
+            width: 600px;
+            /* margin: 50px 35%; */
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 5px 3px 12px -10px #000000;
+        }
+
+        /* #outmax2{
+            margin: auto;
+        } */
+        /* 裡層 */
+        section {
+            background-color: lightgoldenrodyellow;
+            padding: 10px 30px;
+            margin: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0px 10px lightsalmon;
+
+        }
+
+        /* 按鈕樣式 */
+        .button {
+            background-color: lightsalmon;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 14px;
+            margin: 5px;
+            cursor: pointer;
+            /* cursor: pointer; 游標移過去會出現手指變化 */
+            float: right;
+            float: inline-end;
+            /* position: relative; */
+            /* right: 50px; */
+            /* left: 200px; */
+            /* right: 100px; */
+        }
+
+        /* 滑到按鈕 */
+        .button:hover {
+            background-color: brown;
+        }
+
+        /* 問題文字區塊 */
+        .qqq {
+            color: brown;
+
+            /* display: block; */
+            /* font-weight: bolder; */
+            /* padding: 20px 0px; */
+        }
+
+        /* 問題的答案文字 */
+        #qqqtop label {
+            /* display: block; */
+            /* color: rgb(60, 60, 60); */
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            line-height: 2.5em;
+            /* margin: 3px; */
+            padding: 3px 2px;
+
+            /* 測試框到哪 */
+            /* border: 1px solid black; */
+        }
+
+        /* 輸入文字框 */
+        .text_css {
+            /* 內部浮標預設 */
+            /* caret-color: auto; */
+            /* 內部浮標透明 */
+            /* caret-color: transparent; */
+            /* 內部浮標顏色 */
+            /* caret-color: #FF1744; */
+            /* 外框取消 */
+            outline: none;
+            /* 外框效果 */
+            padding: 5px;
+            margin: 3px;
+            padding: 5px 15px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /* 滑到文字框變化 */
+        .text_css:hover {
+            box-shadow: 1px 1px 6px -4px #000000;
+        }
+
+        /* 讓點擊框變顏色 */
+        input+span {
+            background-color: white;
+            color: rgb(60, 60, 60);
+            font-size: 14px;
+            padding: 5px;
+            margin: 3px;
+            border-radius: 5px;
+            /* border:0.05px grey solid */
+        }
+
+        /* 滑過單多選按鈕 */
+        input:hover+span {
+            box-shadow: 1px 1px 6px -4px #000000;
+        }
+
+        /* 點擊單多選按鈕 */
+        input:checked+span {
+            background-color: lightsalmon;
+            color: white;
+            padding: 5px;
+            margin: 3px;
+            /* font-size: 20px; */
+            /* 字變粗 */
+            font-weight: bolder;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 6px -4px #000000;
+        }
+
+        /* 讓label 可以讓滑鼠變指頭 */
+        label {
+            cursor: pointer;
+        }
+
+        /* 去除按鈕 */
+        input[type='radio'] {
+            display: none;
+        }
+
+        form input[type='checkbox'] {
+            display: none;
+        }
+
+        /* 說明內的文字 */
+        #titletop2 {
+            color: rgb(60, 60, 60);
+            font-size: 15px;
+            letter-spacing: 0.1em;
+            text-indent: 1em;
+            font-weight: bolder;
+        }
+
+        /* 版頭的表單說明 */
+        #titletopmax {
+            font-size: 25px;
+            text-align: center;
+            letter-spacing: 0.5em;
+            font-weight: bolder;
+            /* text-shadow: 2px 2px 2px grey; */
+            /* color:white; */
+            /* text-shadow: -2px -2px 1px rgba(255, 255, 255, .1), 2px 2px 1px brown; */
+        }
+
+        /* 一、二、三的題目 */
+        #titletopmax2 {
+            letter-spacing: 0.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#outmax">
+        <div id='toptop'></div>
+    </a>
+    <a href="#button_t">
+        <div id='antdown'></div>
+    </a>
+    <!-- <nav></nav> -->
+    <div id="outmax2">
+        <div id="outmax">
+            <section>
+                <br>
+                <div class="qqq" id='titletopmax'>貓咪智力測驗表單</div><br>
+            </section>
+            <section>
+                <div id="titletop">
+                    <div class="qqq" id="titletopmax2">
+                        <h2>一、說明</h2>
+                    </div>
+                    <div id="titletop2">
+                        <p>以下是這是國外貓咪行為學家設計的20個問題，用來評估家中貓的智力。
+                            請寫下您的答案並提交，可以得到相應的分數!! 滿分100分。</p>
+                        <small>*提醒您，此測驗毫無根據，用來參考而已喔~</small>
+                    </div>
+
+
+                </div>
+                <br>
+            </section>
+            <section id='return_top'>
+                <form>
+                    <div class="qqq" id="titletopmax2">
+                        <h2>二、貓咪基本資料</h2>
+                    </div>
+                    <p>
+                        <label for="catname">貓咪名:</label>
+                        <input type="text" id="catname" placeholder="妞妞" class="text_css">
+                    </p>
+                    <!-- <p>
+                        <label for="b_or_g">性別:</label>
+                    <div class="radio-item">
+                        <input type="radio" name="b_or_g">
+                        <label for="boy">
+                            <i class="disc"></i>
+                            <i class="active"></i>
+                        </label><span>公</span>
+                        <input type="radio" name="b_or_g">
+                        <label for="girl">
+                            <i class="disc"></i>
+                            <i class="active"></i>  
+                        </label><span>母</span> 
+                        
+                    </div>
+                    </p> -->
+                    <div class="radio-tt">
+                        <p>
+                            <label for="b_or_g">性別:</label>
+                            <input type="radio" name="b_or_g" id="boy"><span class="radio-tw">
+                                <label for="boy">公</label></span>
+                            <input type="radio" name="b_or_g" id="girl"><span class="radio-tw"><label
+                                    for="girl">母</label></span>
+                        </p>
+                    </div>
+                    <div class="radio-tt">
+                        <p>
+                            <label for="b_or_g2">節育:</label>
+                            <input type="radio" name="b_or_g2" id="boy2"><span class="radio-tw"><label
+                                    for="boy2">已結紮</label></span>
+                            <input type="radio" name="b_or_g2" id="girl2"><span class="radio-tw"><label
+                                    for="girl2">未結紮</label></span>
+                        </p>
+                    </div>
+                    <p><label for="old">年齡:</label>
+                        <select name="年齡:" id="old" class="text_css">
+                            <option value="in00">請選擇</option>
+                            <option value="in1">1歲內</option>
+                            <option value="in1_3">1~3歲</option>
+                            <option value="in4_7">4~7歲</option>
+                            <option value="in8_out">8歲以上</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="species">品種:</label>
+                        <input list="browsers" name="species" id="species" placeholder="米克斯" class="text_css">
+                        <datalist id="browsers">
+                            <option value="米克斯">
+                            <option value="美短">
+                            <option value="波斯">
+                            <option value="藍貓">
+                            <option value="摺耳">
+                        </datalist>
+                    </p>
+                    <p>
+                        <label for="catcolor">花色:</label>
+                        <input type="checkbox" name="catcolor" id='block'><span><label for="block">黑</label></span>
+                        <input type="checkbox" name="catcolor" id='write'><span><label for="write">白</label></span>
+                        <input type="checkbox" name="catcolor" id='gray'><span><label for="gray">灰</label></span>
+                        <input type="checkbox" name="catcolor" id='orange'><span><label for="orange">橘</label></span>
+                        <input type="checkbox" name="catcolor" id='maxflowe'><span><label
+                                for="maxflowe">玳瑁</label></span>
+                        <input type="checkbox" name="catcolor" id='tiger'><span><label for="tiger">虎斑</label></span>
+                        <input type="checkbox" name="catcolor" id='treeflowe'><span><label
+                                for="treeflowe">三花</label></span>
+                        <input type="checkbox" name="catcolor" id='noflowe'><span><label for="noflowe">無毛</label></span>
+
+                        <br><br>
+                        <span><small>*若您的貓有多種顏色請複選。</small></span>
+                    </p>
+                    <input type="reset" class="button" value="重新填寫"><br><br><br>
+
+                </form>
+            </section>
+
+            <section id='qqqtop'>
+                <div class="qqq" id="titletopmax2">
+                    <h2>三、題目</h2>
+                </div>
+                <div>
+                    <div class="qqq">
+                        <h4>1. 當你在家中廚房打開魚罐頭時，在其他房間的貓咪聽到開罐聲音後會…
+                        </h4>
+                    </div class="qqqin">
+                    <input type="radio" name="catq1" class="c1" id="qid1_1"><span><label
+                            for="qid1_1">a.躲起來</label></span>
+                    <br>
+                    <input type="radio" name="catq1" class="c2" id="qid1_2"><span><label
+                            for="qid1_2">b.抬起頭來，但懶得起身，繼續呼呼大睡</label></span>
+                    <br>
+                    <input type="radio" name="catq1" class="c3" id="qid1_3"><span><label
+                            for="qid1_3">c.不管在哪都會迅速跑過來</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>
+                            2. 當你把外出籠拿出來時，貓咪會⋯⋯
+                        </h4>
+                    </div class="qqqin">
+                    <input type="radio" name="catq2" class="c1" id="qid2_1"><span><label
+                            for="qid2_1">a.跑過來聞聞，甚至進去趴</label></span>
+                    <br>
+                    <input type="radio" name="catq2" class="c2" id="qid2_2"><span><label
+                            for="qid2_2">b.跑掉，但如果有零食就會跑回來</label></span>
+                    <br>
+                    <input type="radio" name="catq2" class="c3" id="qid2_3"><span><label
+                            for="qid2_3">c.躲起來，怎麼樣都不出來</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>3. 貓咪多常為了吃東西而把熟睡中的你吵醒？
+                        </h4>
+                    </div class="qqqin">
+                    <input type="radio" name="catq3" class="c1" id="qid3_1"><span><label
+                            for="qid3_1">a.從未</label></span>
+                    <br>
+                    <input type="radio" name="catq3" class="c2" id="qid3_2"><span><label
+                            for="qid3_2">b.偶而</label></span>
+                    <br>
+                    <input type="radio" name="catq3" class="c3" id="qid3_3"><span><label
+                            for="qid3_3">c.每天</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>4. 家中貓咪曾經因為看過你做，所以學會做某些事情嗎？
+                            <small>*例如有些貓咪從主人身上學會如何開門或是打開櫥櫃，甚至會開關燈</small>
+
+                        </h4>
+                    </div class="qqqin">
+                    <input type="radio" name="catq4" class="c1" id="qid4_1"><span><label
+                            for="qid4_1">a.從未</label></span>
+                    <br>
+                    <input type="radio" name="catq4" class="c2" id="qid4_2"><span><label
+                            for="qid4_2">b.有，學會一、兩個技能，例如開櫥櫃</label></span>
+                    <br>
+                    <input type="radio" name="catq4" class="c3" id="qid4_3"><span><label
+                            for="qid4_3">c.有，有很多事情都是貓咪藉由觀察我學會的</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>5. 如果你每天都固定時間回家，家中貓咪是否會意識到你回來的時間，事先在門口等待？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq5" class="c1" id="qid5_1"><span><label
+                            for="qid5_1">a.從未</label></span>
+                    <br>
+                    <input type="radio" name="catq5" class="c2" id="qid5_2"><span><label
+                            for="qid5_2">b.有，貓咪通常在門口等我</label></span>
+                    <br>
+                    <input type="radio" name="catq5" class="c3" id="qid5_3"><span><label
+                            for="qid5_3">c.有，貓咪除了在門口等我，還會一路跟隨我，直到餵牠</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>6. 如果貓咪的玩具或是食物掉落／卡在物體（如冰箱）後面，貓咪會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq6" class="c1" id="qid6_1"><span><label
+                            for="qid6_1">a.嘗試撈一兩次，若撈不到就放棄</label></span>
+                    <br>
+                    <input type="radio" name="catq6" class="c2" id="qid6_2"><span><label
+                            for="qid6_2">b.嘗試用嘴巴叼回及爪子撈，一段時間後放棄</label></span>
+                    <br>
+                    <input type="radio" name="catq6" class="c3" id="qid6_3"><span><label
+                            for="qid6_3">c.拿不到就會待在那一直對著你看或叫</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>7. 你的貓咪喜歡跟你玩嗎？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq7" class="c1" id="qid7_1"><span><label
+                            for="qid7_1">a.不盡然</label></span>
+                    <br>
+                    <input type="radio" name="catq7" class="c2" id="qid7_2"><span><label
+                            for="qid7_2">b.偶爾</label></span>
+                    <br>
+                    <input type="radio" name="catq7" class="c3" id="qid7_3"><span><label
+                            for="qid7_3">c.非常喜歡</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>8. 如果貓咪看到窗外的小鳥，牠會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq8" class="c1" id="qid8_1"><span><label
+                            for="qid8_1">a.把臉貼在玻璃上，試圖靠近小鳥</label></span>
+                    <br>
+                    <input type="radio" name="catq8" class="c2" id="qid8_2"><span><label
+                            for="qid8_2">b.用爪子抓窗或是持續嚎叫，直到沒看見</label></span>
+                    <br>
+                    <input type="radio" name="catq8" class="c3" id="qid8_3"><span><label
+                            for="qid8_3">c.往旁邊跳，想繞過去</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>9. 如果你把食物或是貓砂盆移動，貓咪需要多久才能適應新的位置？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq9" class="c1" id="qid9_1"><span><label
+                            for="qid9_1">a.幾個星期</label></span>
+                    <br>
+                    <input type="radio" name="catq9" class="c2" id="qid9_2"><span><label
+                            for="qid9_2">b.幾天</label></span>
+                    <br>
+                    <input type="radio" name="catq9" class="c3" id="qid9_3"><span><label
+                            for="qid9_3">c.一天內，甚至沒差別</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>10. 當你叫貓咪的名字，牠會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq10" class="c1" id="qid10_1"><span><label
+                            for="qid10_1">a.沒反應</label></span>
+                    <br>
+                    <input type="radio" name="catq10" class="c2" id="qid10_2"><span><label
+                            for="qid10_2">b.看看我或是把耳朵轉往我的方向</label></span>
+                    <br>
+                    <input type="radio" name="catq10" class="c3" id="qid10_3"><span><label
+                            for="qid10_3">c.立即跑來我身邊</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>11. 你的貓咪會玩不是給他的玩具嗎？如襪子、紙球、繩線等⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq11" class="c1" id="qid11_1"><span><label
+                            for="qid11_1">a.我的貓什麼都不玩</label></span>
+                    <br>
+                    <input type="radio" name="catq11" class="c2" id="qid11_2"><span><label
+                            for="qid11_2">b.偶爾會</label></span>
+                    <br>
+                    <input type="radio" name="catq11" class="c3" id="qid11_3"><span><label
+                            for="qid11_3">c.什麼都可能會玩</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>12. 如果家中有位客人來作客時，牠會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq12" class="c1" id="qid12_1"><span><label
+                            for="qid12_1">a.對客人一視同仁</label></span>
+                    <br>
+                    <input type="radio" name="catq12" class="c2" id="qid12_2"><span><label
+                            for="qid12_2">b.貓咪一直有特定喜好的人，但原因標準不清楚</label></span>
+                    <br>
+                    <input type="radio" name="catq12" class="c3" id="qid12_3"><span><label
+                            for="qid12_3">c.不熟就不會靠近</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>13. 貓咪時常趁你不在家時惡作劇？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq13" class="c1" id="qid13_1"><span><label
+                            for="qid13_1">a.從未</label></span>
+                    <br>
+                    <input type="radio" name="catq13" class="c2" id="qid13_2"><span><label
+                            for="qid13_2">b.偶而</label></span>
+                    <br>
+                    <input type="radio" name="catq13" class="c3" id="qid13_3"><span><label
+                            for="qid13_3">c.總是發生</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>14. 當你摸貓咪，貓咪是否會讓你知道喜歡被摸哪邊或是摸多久？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq14" class="c1" id="qid14_1"><span><label
+                            for="qid14_1">a.不會，牠並不介意被摸多久</label></span>
+                    <br>
+                    <input type="radio" name="catq14" class="c2" id="qid14_2"><span><label
+                            for="qid14_2">b.如果摸到牠喜歡的位置會呼嚕，摸到不想被摸的位置會跑掉</label></span>
+                    <br>
+                    <input type="radio" name="catq14" class="c3" id="qid14_3"><span><label
+                            for="qid14_3">c.摸的時候貓咪會自動換位置跟姿勢，讓你摸牠想被撫摸的地方</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>15. 當你想教貓咪一件事時，牠的反應是？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq15" class="c1" id="qid15_1"><span><label
+                            for="qid15_1">a.我的貓從不理會我教牠的東西，沒有任何回應</label></span>
+                    <br>
+                    <input type="radio" name="catq15" class="c2" id="qid15_2"><span><label
+                            for="qid15_2">b.經過一段時間的訓練後，貓咪可以表現得很好</label></span>
+                    <br>
+                    <input type="radio" name="catq15" class="c3" id="qid15_3"><span><label
+                            for="qid15_3">c.在短時間內就學會，並表現得很好</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>16. 若你多次喝止貓咪做不對的事，如吃一些不該吃的，牠的反應是？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq16" class="c1" id="qid16_1"><span><label
+                            for="qid16_1">a.還是繼續照做</label></span>
+                    <br>
+                    <input type="radio" name="catq16" class="c2" id="qid16_2"><span><label
+                            for="qid16_2">b.趁人不注意，繼續做</label></span>
+                    <br>
+                    <input type="radio" name="catq16" class="c3" id="qid16_3"><span><label
+                            for="qid16_3">c.知道不行，不會做</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>17. 當貓咪想要你手上的零食，牠會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq17" class="c1" id="qid17_1"><span><label
+                            for="qid17_1">a.發出呼嚕聲撒嬌</label></span>
+                    <br>
+                    <input type="radio" name="catq17" class="c2" id="qid17_2"><span><label
+                            for="qid17_2">b.比平常喵喵叫的聲音大一點</label></span>
+                    <br>
+                    <input type="radio" name="catq17" class="c3" id="qid17_3"><span><label
+                            for="qid17_3">c.依照牠喜愛的程度，發出不同的叫聲</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>18. 貓咪找你陪牠玩的頻率？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq18" class="c1" id="qid18_1"><span><label
+                            for="qid18_1">a.很少</label></span>
+                    <br>
+                    <input type="radio" name="catq18" class="c2" id="qid18_2"><span><label
+                            for="qid18_2">b.偶爾</label></span>
+                    <br>
+                    <input type="radio" name="catq18" class="c3" id="qid18_3"><span><label
+                            for="qid18_3">c.常常</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>19. 當貓砂盆需要清理時，貓咪有甚麼反應？
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq19" class="c1" id="qid19_1"><span><label
+                            for="qid19_1">a.一直往貓砂盆跑或是待在那邊，直到你注意到</label></span>
+                    <br>
+                    <input type="radio" name="catq19" class="c2" id="qid19_2"><span><label
+                            for="qid19_2">b.找替代的地方上廁所，或想出去</label></span>
+                    <br>
+                    <input type="radio" name="catq19" class="c3" id="qid19_3"><span><label
+                            for="qid19_3">c.拉在貓砂盆外面，並大聲嚎叫</label></span>
+                </div><br><br>
+                <div>
+                    <div class="qqq">
+                        <h4>20. 如果碗中已經沒有貓食，貓咪會⋯⋯
+                        </h4>
+                    </div>
+                    <input type="radio" name="catq20" class="c1" id="qid20_1"><span><label
+                            for="qid20_1">a.靜靜待在食物碗盤附近，等人來餵食</label></span>
+                    <br>
+                    <input type="radio" name="catq20" class="c2" id="qid20_2"><span><label
+                            for="qid20_2">b.一直喵喵叫，直到你意識到要去餵食牠</label></span>
+                    <br>
+                    <input type="radio" name="catq20" class="c3" id="qid20_3"><span><label
+                            for="qid20_3">c.嘗試打開櫥櫃，並找到食物</label></span>
+                </div>
+                <br><br><br>
+                <div>
+                    <a href="#qqqtop"><span id='button_t'><button onclick="return_all()" class="button"
+                                id="return_all">重置題目</button></span></a>
+                    <span id='button_t'><button onclick="ant()" class="button" id="ant">提交</button></span>
+                </div><br><br><br>
+
+            </section>
+
+            <div>
+                <div id='msg'>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // 下面涵式計算得分並跳出分數
+        function ant() {
+            var sum10 = [0];
+            var classcat1 = document.getElementsByClassName('c1')
+            var classcat2 = document.getElementsByClassName('c2')
+            var classcat3 = document.getElementsByClassName('c3')
+            for (let i = 0; i < classcat1.length; i++) {
+                if (classcat1[i].checked) {
+                    sum10.push(1)
+                }
+            }
+            for (let i = 0; i < classcat1.length; i++) {
+                if (classcat2[i].checked) {
+                    sum10.push(3)
+                }
+            }
+            for (let i = 0; i < classcat1.length; i++) {
+                if (classcat3[i].checked) {
+                    sum10.push(5)
+                }
+            }
+            var catname1 = document.getElementById('catname').value
+            var sum11 = eval(sum10.join('+'));
+            if (sum11 == 0) {
+                alert(`恭喜您的貓咪 ${catname1}!\n獲得的分數是:  ${sum11}  分\n\n這個分數代表您沒做題目，\n提醒您填寫後再次提交喔!`);
+            }
+            if (40 > sum11 && sum11 >= 1) {
+                alert(`恭喜您的貓咪 ${catname1}!\n獲得的分數是:  ${sum11}  分\n\n這個分數的貓咪是最好的伴侶，\n與人互動良好，\n雖然你家貓咪算不上特別聰明，\n但你的貓貓還是很可愛喔!`);
+            }
+            if (80 >= sum11 && sum11 >= 40) {
+                alert(`恭喜您的貓咪 ${catname1}!\n獲得的分數是:  ${sum11}  分\n\n你的貓咪智商落在平均值，\n有些小聰明，\n看在平日主人服侍的還不錯，\n會視情況撒撒嬌，\n取悅一下你。`);
+            }
+            if (sum11 > 80) {
+                alert(`恭喜您的貓咪 ${catname1}!\n獲得的分數是:  ${sum11}  分\n\n你養了一隻愛因斯坦，\n可能甚至比你聰明，\n你只能甘願當鏟屎官了`);
+            }
+            // alert(`恭喜您的貓咪 ${catname1}!\n獲得的分數是:  ${sum11}  分`);
+        }
+        // 下面的涵式重製題目
+        function return_all() {
+            var classcat11 = document.getElementsByClassName('c1')
+            var classcat12 = document.getElementsByClassName('c2')
+            var classcat13 = document.getElementsByClassName('c3')
+            for (let i = 0; i < classcat11.length; i++) {
+                classcat11[i].checked = false;
+            }
+            for (let i = 0; i < classcat12.length; i++) {
+                classcat12[i].checked = false;
+            }
+            for (let i = 0; i < classcat13.length; i++) {
+                classcat13[i].checked = false;
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
